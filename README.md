@@ -94,5 +94,6 @@ Social media icons/links: LinkedIn, GitHub, Twitter, etc.
 
 Quick links again
 
-![image](https://github.com/user-attachments/assets/b8451546-0516-4dd5-9acd-17d41c9e46cd)
+![image](https://github.com/user-attachments/assets/1e70fe52-7723-4868-8da3-47e6e07d2567)
+
 
