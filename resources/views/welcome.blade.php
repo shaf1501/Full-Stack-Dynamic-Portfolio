@@ -33,16 +33,16 @@
 </head>
 <body>
 
-  <div class="navbar">
+  <div class="navbar" id="1">
     <div class="logo">Tanjid Ahammed Shafin</div>
     <div class="nav_link">
       <div class="nav_item a">Home</div>
       <div class="nav_item a">About</div>
       <div class="nav_item a">Projects</div>
-      <div class="nav_item a">Skills</div>
-      <div class="nav_item a">Contact</div>
-    </div>
+      <div class="nav_item a" onclick= "Title()">Skills</div>
+      <div class="nav_item a" onclick= "showTitle()">Contact</div>
+    </div><script src="{{asset('assets\js\script.js')}}"></script>
   </div>
-
 </body>
 </html>
+)
