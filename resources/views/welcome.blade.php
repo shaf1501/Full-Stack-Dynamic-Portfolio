@@ -62,6 +62,9 @@
       padding: 15px;
       border-radius: 5px;
     }
+    h1{
+        text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -72,7 +75,6 @@
       <li><a class="active" href="#">Home</a></li>
       <li><a href="#">Education</a></li>
       <li><a href="#">Skills</a></li>
-      <li><a href="#">About Me</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </div>
@@ -80,7 +82,7 @@
   <div class="content">
     <div class="profile">
       <img src="{{asset('assets/image/Formal_pic.png')}}" alt="Picture">
-      <p>Picture</p>
+
     </div>
     <div class="intro">
       <button>About me</button>
