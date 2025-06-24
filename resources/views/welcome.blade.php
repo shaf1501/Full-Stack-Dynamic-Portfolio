@@ -8,6 +8,7 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
+      margin: 0;
     }
     .header-bar {
       display: flex;
@@ -17,7 +18,7 @@
       margin-bottom: 30px;
     }
     .header-bar h1 {
-      color: blue;
+      color: #DC143C;
       font-size: 24px;
     }
     .nav {
@@ -26,10 +27,11 @@
       margin: 0;
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .nav a {
       text-decoration: none;
-      color: black;
+      color: #DC143C;
       padding: 5px 10px;
     }
     .nav a.active {
@@ -40,6 +42,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
+      margin-bottom: 40px;
     }
     .profile {
       text-align: center;
@@ -62,10 +65,53 @@
       padding: 15px;
       border-radius: 5px;
     }
-    h1{
-        text-align: center;
+    h1 {
+      text-align: center;
+    }
+    footer {
+      background-color: #f1f1f1;
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid #ddd;
+    }
+    button {
+      background-color: #DC143C;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #c21236;
+    }
+
+    @media (max-width: 600px) {
+      .header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav {
+        flex-direction: column;
+        width: 100%;
+        gap: 5px;
+        margin-top: 10px;
+      }
+      .content {
+        flex-direction: column;
+        align-items: center;
+      }
+      .intro {
+        width: 100%;
+        padding: 0 10px;
+      }
     }
   </style>
+
 </head>
 <body>
 
@@ -73,16 +119,17 @@
     <h1><strong>Tanjid Ahammed Shafin</strong></h1>
     <ul class="nav">
       <li><a class="active" href="#">Home</a></li>
-      <li><a href="#">Education</a></li>
-      <li><a href="#">Skills</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="/education">Education</a></li>
+      <li><a href="/skils">Skills</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/about_me">About Me</a></li>
+      <li><a href="/contact">Contact</a></li>
     </ul>
   </div>
 
   <div class="content">
     <div class="profile">
       <img src="{{asset('assets/image/Formal_pic.png')}}" alt="Picture">
-
     </div>
     <div class="intro">
       <button>About me</button>
@@ -91,6 +138,10 @@
       </div>
     </div>
   </div>
+
+  <footer>
+    &copy; 2025 Tanjid Ahammed Shafin.
+  </footer>
 
 </body>
 </html>
