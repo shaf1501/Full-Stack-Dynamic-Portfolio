@@ -1,656 +1,946 @@
-@extends('layouts.master')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Tanjid Ahammed Shafin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.co        .delay-4 { transition-delay: 0.4s; }
 
-@section('title', 'Contact - Tanjid Ahammed Shafin')
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
 
-@section('styles')
-<style>
-    .contact-hero {
-        background: var(--gradient-1);
-        color: white;
-        padding: 5rem 0;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
 
-    .contact-hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="contact" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="white" opacity="0.1"/><path d="M10 15l10 8 10-8" stroke="white" stroke-width="1" fill="none" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23contact)"/></svg>');
-    }
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
 
-    .contact-hero h1 {
-        font-size: 3.5rem;
-        margin-bottom: 1rem;
-        animation: fadeInUp 1s ease;
-    }
+        .footer-section p {
+            color: var(--gray-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
 
-    .contact-hero p {
-        font-size: 1.3rem;
-        max-width: 600px;
-        margin: 0 auto;
-        opacity: 0.9;
-        animation: fadeInUp 1s ease 0.2s both;
-    }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
 
-    .contact-content {
-        padding: 6rem 0;
-    }
+        .footer-social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
 
-    .contact-grid {
-        display: grid;
-        grid-template-columns: 1fr 1.5fr;
-        gap: 4rem;
-        align-items: start;
-        margin-bottom: 4rem;
-    }
+        .footer-social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(15, 130, 140, 0.3);
+        }
 
-    .contact-info {
-        background: white;
-        padding: 3rem;
-        border-radius: 20px;
-        box-shadow: var(--shadow-lg);
-        position: sticky;
-        top: 100px;
-        animation: fadeInLeft 1s ease;
-    }
+        .footer-links {
+            list-style: none;
+        }
 
-    .contact-info h2 {
-        color: var(--primary);
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        position: relative;
-    }
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
 
-    .contact-info h2::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 50px;
-        height: 4px;
-        background: var(--gradient-1);
-        border-radius: 2px;
-    }
+        .footer-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    .contact-info p {
-        color: var(--text-secondary);
-        line-height: 1.7;
-        margin-bottom: 2rem;
-        font-size: 1.1rem;
-    }
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
 
-    .contact-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 2rem;
-        padding: 1.5rem;
-        background: linear-gradient(145deg, #f7fafc, white);
-        border-radius: 15px;
-        border-left: 4px solid var(--primary);
-        transition: all 0.3s ease;
-    }
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            color: var(--gray-light);
+        }
 
-    .contact-item:hover {
-        transform: translateX(10px);
-        box-shadow: var(--shadow-md);
-    }
+        .footer-contact i {
+            color: var(--accent);
+            width: 20px;
+        }
 
-    .contact-icon {
-        width: 60px;
-        height: 60px;
-        background: var(--gradient-1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 1.5rem;
-        transition: all 0.3s ease;
-    }
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--gray-light);
+        }
 
-    .contact-item:hover .contact-icon {
-        transform: scale(1.1) rotate(10deg);
-    }
+        .footer-bottom p {
+            margin: 0;
+        }
 
-    .contact-icon i {
-        font-size: 1.5rem;
-        color: white;
-    }
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
 
-    .contact-details h4 {
-        color: var(--primary);
-        margin-bottom: 0.5rem;
-        font-size: 1.2rem;
-    }
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+        }/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #0F828C;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --gray-light: #64748b;
+            --gray-medium: #475569;
+            --gradient: linear-gradient(135deg, #0F828C 0%, #0a6b75 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
 
-    .contact-details p {
-        color: var(--text-secondary);
-        margin: 0;
-        font-size: 1rem;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .contact-details a {
-        color: var(--secondary);
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--light-bg);
+            overflow-x: hidden;
+        }
 
-    .contact-details a:hover {
-        color: var(--primary);
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .social-links {
-        margin-top: 2rem;
-        padding-top: 2rem;
-        border-top: 1px solid #e2e8f0;
-    }
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
 
-    .social-links h4 {
-        color: var(--primary);
-        margin-bottom: 1rem;
-        font-size: 1.3rem;
-    }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
 
-    .social-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-        gap: 1rem;
-    }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            transition: all 0.3s ease;
+            letter-spacing: -0.05em;
+            position: relative;
+        }
 
-    .social-link {
-        width: 50px;
-        height: 50px;
-        background: var(--gradient-2);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        font-size: 1.2rem;
-    }
+        .logo:hover {
+            color: var(--accent);
+            transform: scale(1.05);
+        }
 
-    .social-link:hover {
-        transform: translateY(-5px) scale(1.1);
-        box-shadow: var(--shadow-lg);
-    }
+        .logo-text {
+            font-weight: 900;
+            font-family: 'Inter', sans-serif;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
 
-    .contact-form {
-        background: white;
-        padding: 3rem;
-        border-radius: 20px;
-        box-shadow: var(--shadow-lg);
-        animation: fadeInRight 1s ease;
-    }
+        /* Logo Animation on Page Load */
+        .logo {
+            animation: logoEntrance 1s ease-out;
+        }
 
-    .contact-form h2 {
-        color: var(--primary);
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        position: relative;
-    }
+        @keyframes logoEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.8);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateY(-5px) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
 
-    .contact-form h2::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 50px;
-        height: 4px;
-        background: var(--gradient-1);
-        border-radius: 2px;
-    }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
 
-    .form-group {
-        margin-bottom: 2rem;
-        position: relative;
-    }
+        .nav-link {
+            text-decoration: none;
+            color: var(--gray-medium);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
 
-    .form-group label {
-        display: block;
-        color: var(--text-primary);
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-    }
+        .nav-link:hover {
+            color: var(--accent);
+            background: rgba(15, 130, 140, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(15, 130, 140, 0.15);
+        }
 
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        padding: 1rem 1.5rem;
-        border: 2px solid #e2e8f0;
-        border-radius: 15px;
-        font-size: 1rem;
-        font-family: inherit;
-        transition: all 0.3s ease;
-        background: #f7fafc;
-    }
+        .nav-link:hover::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+            animation: slideIn 0.3s ease;
+        }
 
-    .form-group input:focus,
-    .form-group textarea:focus {
-        outline: none;
-        border-color: var(--primary);
-        background: white;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
+        .nav-link.active {
+            color: var(--accent);
+            background: rgba(15, 130, 140, 0.08);
+        }
 
-    .form-group textarea {
-        min-height: 120px;
-        resize: vertical;
-    }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
 
-    .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-    }
+        @keyframes slideIn {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 80%;
+                opacity: 1;
+            }
+        }
 
-    .submit-btn {
-        background: var(--gradient-1);
-        color: white;
-        border: none;
-        padding: 1rem 2.5rem;
-        border-radius: 25px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
 
-    .submit-btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: left 0.5s ease;
-    }
+        .mobile-menu-btn:hover {
+            background: rgba(15, 130, 140, 0.1);
+            color: var(--accent);
+            transform: scale(1.1);
+        }
 
-    .submit-btn:hover::before {
-        left: 100%;
-    }
+        /* Resume Download Button */
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            margin-left: 1rem;
+        }
 
-    .submit-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: var(--shadow-xl);
-    }
+        .resume-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
 
-    .submit-btn:active {
-        transform: translateY(-1px);
-    }
+        .resume-btn i {
+            font-size: 0.9rem;
+        }
 
-    .form-status {
-        padding: 1rem;
-        border-radius: 10px;
-        margin-top: 1rem;
-        text-align: center;
-        font-weight: 600;
-        display: none;
-    }
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 80px 0;
+            min-height: calc(100vh - 80px);
+        }
 
-    .form-status.success {
-        background: linear-gradient(135deg, #48bb78, #38a169);
-        color: white;
-    }
+        .page-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
 
-    .form-status.error {
-        background: linear-gradient(135deg, #f56565, #e53e3e);
-        color: white;
-    }
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    .floating-elements {
-        position: absolute;
-        top: 50%;
-        right: -50px;
-        width: 100px;
-        height: 100px;
-        opacity: 0.1;
-        animation: float 6s ease-in-out infinite;
-    }
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray-medium);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-    .floating-elements:nth-child(2) {
-        left: -50px;
-        animation-delay: -3s;
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(180deg); }
-    }
-
-    .contact-map {
-        background: white;
-        padding: 3rem;
-        border-radius: 20px;
-        box-shadow: var(--shadow-lg);
-        margin-top: 4rem;
-        text-align: center;
-        animation: fadeInUp 1s ease;
-    }
-
-    .contact-map h3 {
-        color: var(--primary);
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-    }
-
-    .contact-map p {
-        color: var(--text-secondary);
-        margin-bottom: 2rem;
-        font-size: 1.1rem;
-    }
-
-    .map-placeholder {
-        width: 100%;
-        height: 300px;
-        background: linear-gradient(135deg, #f7fafc, #edf2f7);
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px dashed var(--primary);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .map-placeholder::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 10a20 20 0 0 0-20 20c0 15 20 30 20 30s20-15 20-30a20 20 0 0 0-20-20zm0 25a5 5 0 1 1 0-10 5 5 0 0 1 0 10z" fill="%23667eea" opacity="0.1"/></svg>');
-        background-size: 100px 100px;
-        animation: mapPattern 10s linear infinite;
-    }
-
-    @keyframes mapPattern {
-        0% { background-position: 0 0; }
-        100% { background-position: 100px 100px; }
-    }
-
-    .map-content {
-        position: relative;
-        z-index: 2;
-    }
-
-    .map-icon {
-        width: 80px;
-        height: 80px;
-        background: var(--gradient-1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1rem;
-    }
-
-    .map-icon i {
-        font-size: 2rem;
-        color: white;
-    }
-
-    @media (max-width: 768px) {
-        .contact-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
+        /* Contact Section */
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
         }
 
         .contact-info {
-            position: static;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            height: fit-content;
         }
 
-        .contact-hero h1 {
-            font-size: 2.5rem;
+        .contact-info h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
 
-        .form-row {
-            grid-template-columns: 1fr;
+        .contact-info p {
+            color: var(--gray-medium);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
         }
 
-        .contact-form,
-        .contact-info {
-            padding: 2rem;
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 16px;
+            transition: all 0.3s ease;
         }
 
-        .social-grid {
-            grid-template-columns: repeat(4, 1fr);
+        .contact-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
-    }
-</style>
-@endsection
 
-@section('content')
-<!-- Contact Hero Section -->
-<section class="contact-hero">
-    <div class="container">
-        <h1><i class="fas fa-envelope"></i> Get In Touch</h1>
-        <p>Ready to start a conversation? I'm here to help bring your ideas to life. Let's create something amazing together!</p>
-    </div>
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
 
-    <div class="floating-elements">
-        <i class="fas fa-paper-plane"></i>
-    </div>
-    <div class="floating-elements">
-        <i class="fas fa-comments"></i>
-    </div>
-</section>
+        .contact-details h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
 
-<!-- Contact Content -->
-<section class="contact-content">
-    <div class="container">
-        <div class="contact-grid">
-            <!-- Contact Information -->
-            <div class="contact-info animate-on-scroll">
-                <h2>Let's Connect</h2>
-                <p>
-                    I'm always excited to collaborate on new projects, discuss opportunities, or simply have a conversation about technology and development. Feel free to reach out through any of the channels below.
-                </p>
+        .contact-details span {
+            color: var(--gray-medium);
+            font-size: 0.95rem;
+        }
 
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-form h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-form p {
+            color: var(--gray-medium);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(15, 130, 140, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Map Section */
+        .map-section {
+            margin-top: 6rem;
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .map-section h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .map-section p {
+            color: var(--gray-medium);
+            margin-bottom: 2rem;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: var(--light-bg);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-medium);
+            font-size: 1.1rem;
+            border: 2px dashed #e2e8f0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                border-top: 1px solid rgba(0, 0, 0, 0.05);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .resume-btn {
+                margin-left: 0;
+                margin-top: 1rem;
+                justify-self: center;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .contact-section {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info,
+            .contact-form,
+            .map-section {
+                padding: 2rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="{{ url('/') }}" class="logo">
+                    <span class="logo-text">Shafin</span>
+                </a>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="{{ url('/') }}" class="nav-link">Home</a></li>
+                    <li><a href="{{ url('/about') }}" class="nav-link">About</a></li>
+                    <li><a href="{{ url('/education') }}" class="nav-link">Education</a></li>
+                    <li><a href="{{ url('/skills') }}" class="nav-link">Skills</a></li>
+                    <li><a href="{{ url('/projects') }}" class="nav-link">Projects</a></li>
+                    <li><a href="{{ url('/achievements') }}" class="nav-link">Achievements</a></li>
+                    <li><a href="{{ url('/contact') }}" class="nav-link active">Contact</a></li>
+                </ul>
+                <a href="{{ asset('assets/documents/resume.pdf') }}" class="resume-btn" download="Tanjid_Shafin_Resume.pdf">
+                    <i class="fas fa-download"></i>
+                    Resume
+                </a>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header fade-in">
+                <h1 class="page-title">Get In Touch</h1>
+                <p class="page-subtitle">Let's discuss your project or just say hello. I'm always excited to work on new ideas and collaborate with great people.</p>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <!-- Contact Info -->
+                <div class="contact-info slide-in-left">
+                    <h3>Let's Connect</h3>
+                    <p>I'm always open to discussing new opportunities, interesting projects, or just having a friendly chat about technology and development.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <span>tanjid.shafin@email.com</span>
+                        </div>
                     </div>
-                    <div class="contact-details">
-                        <h4>Email</h4>
-                        <p><a href="mailto:tanjid.shafin@example.com">tanjid.shafin@example.com</a></p>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <span>+880 1234-567890</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <span>Dhaka, Bangladesh</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Response Time</h4>
+                            <span>Usually within 24 hours</span>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
 
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Phone</h4>
-                        <p><a href="tel:+8801XXXXXXXXX">+880 1X XXX XXXXX</a></p>
+                <!-- Contact Form -->
+                <div class="contact-form slide-in-right">
+                    <h3>Send Message</h3>
+                    <p>Fill out the form below and I'll get back to you as soon as possible.</p>
+                    
+                    <form>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName" class="form-label">First Name *</label>
+                                <input type="text" id="firstName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="form-label">Last Name *</label>
+                                <input type="text" id="lastName" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" id="phone" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="subject" class="form-label">Subject *</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="message" class="form-label">Message *</label>
+                            <textarea id="message" class="form-control" required placeholder="Tell me about your project or just say hello!"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-section fade-in delay-3">
+                <h3>My Location</h3>
+                <p>Based in Dhaka, Bangladesh - Available for remote work worldwide</p>
+                <div class="map-placeholder">
+                    <div>
+                        <i class="fas fa-map-marked-alt" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
+                        Interactive Map - Dhaka, Bangladesh
                     </div>
                 </div>
+            </div>
+        </div>
+    </main>
 
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Location</h4>
-                        <p>Dhaka, Bangladesh</p>
-                    </div>
-                </div>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
 
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Response Time</h4>
-                        <p>Usually within 24 hours</p>
-                    </div>
-                </div>
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
 
-                <div class="social-links">
-                    <h4>Follow Me</h4>
-                    <div class="social-grid">
-                        <a href="#" class="social-link" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="social-link" title="GitHub">
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            
+            // Show success message (you can integrate with your backend here)
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">Shafin</div>
+                    <p>Full Stack Developer passionate about creating innovative web solutions and bringing ideas to life through clean, efficient code.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/shaf1501" class="footer-social-link" title="GitHub" target="_blank">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="#" class="social-link" title="Facebook">
-                            <i class="fab fa-facebook-f"></i>
+                        <a href="https://linkedin.com/in/tanjid-shafin" class="footer-social-link" title="LinkedIn" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="#" class="social-link" title="Twitter">
+                        <a href="https://twitter.com/tanjid_shafin" class="footer-social-link" title="Twitter" target="_blank">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#" class="social-link" title="Instagram">
+                        <a href="https://instagram.com/tanjid_shafin" class="footer-social-link" title="Instagram" target="_blank">
                             <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/tanjid.shafin" class="footer-social-link" title="Facebook" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
                         </a>
                     </div>
                 </div>
-            </div>
-
-            <!-- Contact Form -->
-            <div class="contact-form animate-on-scroll">
-                <h2>Send Message</h2>
-
-                <form id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" id="firstName" name="firstName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" required>
-                        </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="{{ url('/about') }}"><i class="fas fa-user"></i> About Me</a></li>
+                        <li><a href="{{ url('/skills') }}"><i class="fas fa-code"></i> Skills</a></li>
+                        <li><a href="{{ url('/projects') }}"><i class="fas fa-laptop-code"></i> Projects</a></li>
+                        <li><a href="{{ url('/achievements') }}"><i class="fas fa-trophy"></i> Achievements</a></li>
+                        <li><a href="{{ url('/contact') }}"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Get In Touch</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> tanjidshafin@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> +880 1234 567890</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
+                        <p><i class="fas fa-globe"></i> Available for freelance work</p>
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" placeholder="Tell me about your project or just say hello..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-
-                    <div class="form-status" id="formStatus"></div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Location Map -->
-        <div class="contact-map animate-on-scroll">
-            <h3>Find Me Here</h3>
-            <p>Based in Dhaka, Bangladesh - Available for remote work worldwide</p>
-
-            <div class="map-placeholder">
-                <div class="map-content">
-                    <div class="map-icon">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <h4 style="color: var(--primary); margin: 0;">Dhaka, Bangladesh</h4>
-                    <p style="color: var(--text-secondary); margin: 0.5rem 0 0 0;">Ready to work remotely or meet locally</p>
                 </div>
             </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tanjid Ahammed Shafin. All rights reserved.</p>
+            </div>
         </div>
-    </div>
-</section>
-@endsection
-
-@section('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const contactForm = document.getElementById('contactForm');
-        const formStatus = document.getElementById('formStatus');
-
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Get form data
-            const formData = new FormData(contactForm);
-            const firstName = formData.get('firstName');
-            const lastName = formData.get('lastName');
-            const email = formData.get('email');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-
-            // Basic validation
-            if (!firstName || !lastName || !email || !subject || !message) {
-                showFormStatus('Please fill in all required fields.', 'error');
-                return;
-            }
-
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showFormStatus('Please enter a valid email address.', 'error');
-                return;
-            }
-
-            // Simulate form submission
-            const submitBtn = contactForm.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-
-            // Simulate API call delay
-            setTimeout(function() {
-                showFormStatus('Thank you for your message! I\'ll get back to you within 24 hours.', 'success');
-                contactForm.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
-        });
-
-        function showFormStatus(message, type) {
-            formStatus.textContent = message;
-            formStatus.className = `form-status ${type}`;
-            formStatus.style.display = 'block';
-
-            // Hide after 5 seconds
-            setTimeout(function() {
-                formStatus.style.display = 'none';
-            }, 5000);
-        }
-
-        // Add floating animation to form inputs
-        const inputs = contactForm.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'translateY(-2px)';
-            });
-
-            input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'translateY(0)';
-            });
-        });
-    });
-</script>
-@endsection
+    </footer>
+</body>
+</html>

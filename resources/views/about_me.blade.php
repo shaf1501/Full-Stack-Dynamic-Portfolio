@@ -1,552 +1,1057 @@
-@extends('layouts.master')
+<!DOCTYPE h        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #0F828C;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --gray-light: #64748b;
+            --gray-medium: #475569;
+            --gradient: linear-gradient(135deg, #0F828C 0%, #0a6b75 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }ng="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Tanjid Ahammed Shafin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a202c;
+            --secondary: #2d3748;
+            --accent: #0F828C;
+            --light-bg: #f7fafc;
+            --white: #ffffff;
+            --gray-light: #718096;
+            --gray-medium: #4a5568;
+            --gradient: linear-gradient(135deg, #0F828C 0%, #0a6b75 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
 
-@section('title', 'About Me - Tanjid Ahammed Shafin')
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-@section('styles')
-<style>
-    .about-hero {
-        background: var(--gradient-1);
-        color: white;
-        padding: 5rem 0;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--light-bg);
+            overflow-x: hidden;
+        }
 
-    .about-hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .about-hero h1 {
-        font-size: 3.5rem;
-        margin-bottom: 1rem;
-        animation: fadeInUp 1s ease;
-    }
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
 
-    .about-hero p {
-        font-size: 1.3rem;
-        max-width: 600px;
-        margin: 0 auto;
-        opacity: 0.9;
-        animation: fadeInUp 1s ease 0.2s both;
-    }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
 
-    .about-content {
-        padding: 5rem 0;
-    }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            transition: all 0.3s ease;
+            letter-spacing: -0.05em;
+            position: relative;
+        }
 
-    .about-grid {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 4rem;
-        align-items: start;
-        margin-bottom: 5rem;
-    }
+        .logo:hover {
+            color: var(--accent);
+            transform: scale(1.05);
+        }
 
-    .profile-section {
-        text-align: center;
-        position: sticky;
-        top: 100px;
-    }
+        .logo-text {
+            font-weight: 900;
+            font-family: 'Inter', sans-serif;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
 
-    .profile-image-large {
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 8px solid white;
-        box-shadow: var(--shadow-xl);
-        margin-bottom: 2rem;
-        transition: all 0.3s ease;
-        animation: fadeInLeft 1s ease;
-    }
+        /* Logo Animation on Page Load */
+        .logo {
+            animation: logoEntrance 1s ease-out;
+        }
 
-    .profile-image-large:hover {
-        transform: scale(1.05);
-        box-shadow: 0 30px 60px rgba(102, 126, 234, 0.3);
-    }
+        @keyframes logoEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.8);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateY(-5px) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
 
-    .profile-info {
-        background: white;
-        padding: 2rem;
-        border-radius: 20px;
-        box-shadow: var(--shadow-md);
-        animation: fadeInLeft 1s ease 0.2s both;
-    }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
 
-    .profile-info h3 {
-        color: var(--primary);
-        margin-bottom: 1rem;
-        font-size: 1.5rem;
-    }
+        .nav-link {
+            text-decoration: none;
+            color: var(--gray-medium);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
 
-    .info-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1rem;
-        padding: 0.5rem 0;
-    }
+        .nav-link:hover {
+            color: var(--accent);
+            background: rgba(15, 130, 140, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(15, 130, 140, 0.15);
+        }
 
-    .info-item i {
-        color: var(--secondary);
-        width: 20px;
-        margin-right: 1rem;
-        font-size: 1.1rem;
-    }
+        .nav-link:hover::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+            animation: slideIn 0.3s ease;
+        }
 
-    .info-item span {
-        color: var(--text-secondary);
-        font-weight: 500;
-    }
+        .nav-link.active {
+            color: var(--accent);
+            background: rgba(15, 130, 140, 0.08);
+        }
 
-    .about-text {
-        animation: fadeInRight 1s ease;
-    }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
 
-    .about-text h2 {
-        color: var(--primary);
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-        position: relative;
-    }
+        @keyframes slideIn {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 80%;
+                opacity: 1;
+            }
+        }
 
-    .about-text h2::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 60px;
-        height: 4px;
-        background: var(--gradient-1);
-        border-radius: 2px;
-    }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
 
-    .about-text p {
-        color: var(--text-secondary);
-        font-size: 1.1rem;
-        line-height: 1.8;
-        margin-bottom: 2rem;
-        text-align: justify;
-    }
+        .mobile-menu-btn:hover {
+            background: rgba(15, 130, 140, 0.1);
+            color: var(--accent);
+            transform: scale(1.1);
+        }
 
-    .interests-section {
-        background: white;
-        padding: 5rem 0;
-    }
+        /* Resume Download Button */
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            margin-left: 1rem;
+        }
 
-    .interests-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-    }
+        .resume-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
 
-    .interest-card {
-        background: linear-gradient(145deg, #f7fafc, white);
-        padding: 2.5rem;
-        border-radius: 20px;
-        text-align: center;
-        box-shadow: var(--shadow-md);
-        transition: all 0.3s ease;
-        border: 1px solid rgba(102, 126, 234, 0.1);
-        position: relative;
-        overflow: hidden;
-    }
+        .resume-btn i {
+            font-size: 0.9rem;
+        }
 
-    .interest-card::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: var(--gradient-3);
-        transform: rotate(45deg);
-        transition: all 0.6s ease;
-        opacity: 0;
-    }
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 80px 0;
+        }
 
-    .interest-card:hover::before {
-        opacity: 0.05;
-        animation: shimmer 1.5s ease;
-    }
+        .page-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
 
-    @keyframes shimmer {
-        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    }
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    .interest-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: var(--shadow-xl);
-    }
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray-medium);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-    .interest-icon {
-        width: 80px;
-        height: 80px;
-        background: var(--gradient-1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1.5rem;
-        transition: all 0.3s ease;
-    }
+        /* About Content */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 80px;
+        }
 
-    .interest-card:hover .interest-icon {
-        transform: scale(1.1) rotate(10deg);
-    }
+        .about-image {
+            text-align: center;
+        }
 
-    .interest-icon i {
-        font-size: 2rem;
-        color: white;
-    }
+        .about-image img {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid var(--white);
+            box-shadow: var(--shadow-xl);
+            transition: all 0.3s ease;
+        }
 
-    .interest-card h3 {
-        color: var(--text-primary);
-        margin-bottom: 1rem;
-        font-size: 1.5rem;
-    }
+        .about-image img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
 
-    .interest-card p {
-        color: var(--text-secondary);
-        line-height: 1.6;
-    }
+        .about-text h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
 
-    .values-section {
-        background: linear-gradient(135deg, #f7fafc, #edf2f7);
-        padding: 5rem 0;
-    }
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--gray-medium);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
 
-    .values-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-    }
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
 
-    .value-item {
-        background: white;
-        padding: 2rem;
-        border-radius: 15px;
-        text-align: center;
-        box-shadow: var(--shadow-md);
-        transition: all 0.3s ease;
-        border-left: 5px solid var(--primary);
-    }
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+        }
 
-    .value-item:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-xl);
-        border-left-color: var(--secondary);
-    }
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
 
-    .value-icon {
-        width: 60px;
-        height: 60px;
-        background: var(--gradient-2);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1rem;
-    }
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
 
-    .value-icon i {
-        font-size: 1.5rem;
-        color: white;
-    }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
 
-    .value-item h4 {
-        color: var(--text-primary);
-        margin-bottom: 1rem;
-        font-size: 1.3rem;
-    }
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray-medium);
+            font-weight: 500;
+        }
 
-    .value-item p {
-        color: var(--text-secondary);
-        font-size: 1rem;
-        line-height: 1.5;
-    }
+        /* Values Section */
+        .values-section {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: var(--shadow-lg);
+        }
 
-    .quote-section {
-        background: var(--gradient-1);
-        color: white;
-        padding: 4rem 0;
-        text-align: center;
-        position: relative;
-    }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
 
-    .quote-content {
-        max-width: 800px;
-        margin: 0 auto;
-        position: relative;
-    }
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
 
-    .quote-text {
-        font-size: 2rem;
-        font-style: italic;
-        margin-bottom: 2rem;
-        position: relative;
-        line-height: 1.5;
-    }
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--gray-medium);
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-    .quote-text::before,
-    .quote-text::after {
-        content: '"';
-        font-size: 4rem;
-        color: rgba(255, 255, 255, 0.3);
-        position: absolute;
-        top: -1rem;
-    }
-
-    .quote-text::before {
-        left: -2rem;
-    }
-
-    .quote-text::after {
-        right: -2rem;
-    }
-
-    .quote-author {
-        font-size: 1.2rem;
-        opacity: 0.9;
-        font-weight: 500;
-    }
-
-    @media (max-width: 768px) {
-        .about-grid {
-            grid-template-columns: 1fr;
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
 
-        .profile-section {
-            position: static;
+        .value-card {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--light-bg);
+            border-radius: 20px;
+            transition: all 0.3s ease;
         }
 
-        .profile-image-large {
-            width: 200px;
-            height: 200px;
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
         }
 
-        .about-hero h1 {
-            font-size: 2.5rem;
-        }
-
-        .about-text h2 {
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2rem;
+            margin: 0 auto 1.5rem;
         }
 
-        .quote-text {
+        .value-card h3 {
             font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
 
-        .quote-text::before,
-        .quote-text::after {
-            font-size: 3rem;
+        .value-card p {
+            color: var(--gray-medium);
+            line-height: 1.6;
         }
 
-        .quote-text::before {
-            left: -1rem;
+        /* Personal Info */
+        .personal-info {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: var(--shadow-lg);
         }
 
-        .quote-text::after {
-            right: -1rem;
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
         }
-    }
 
-    .download-cv {
-        margin-top: 2rem;
-        display: inline-block;
-    }
-</style>
-@endsection
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
 
-@section('content')
-<!-- About Hero Section -->
-<section class="about-hero">
-    <div class="container">
-        <h1><i class="fas fa-user"></i> About Me</h1>
-        <p>Get to know the person behind the code - my journey, passions, and what drives me to create amazing digital experiences.</p>
-    </div>
-</section>
+        .info-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
 
-<!-- About Content -->
-<section class="about-content">
-    <div class="container">
-        <div class="about-grid">
-            <div class="profile-section animate-on-scroll">
-                <img src="{{asset('assets/image/Formal_pic.png')}}" alt="Tanjid Ahammed Shafin" class="profile-image-large">
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
 
-                <div class="profile-info">
-                    <h3>Quick Info</h3>
+        .info-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .info-content span {
+            color: var(--gray-medium);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--primary);
+            border-color: var(--white);
+        }
+
+        .btn-white:hover {
+            background: transparent;
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                border-top: 1px solid rgba(0, 0, 0, 0.05);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .resume-btn {
+                margin-left: 0;
+                margin-top: 1rem;
+                justify-self: center;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .about-image img {
+                width: 280px;
+                height: 280px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .values-section,
+            .personal-info,
+            .cta-section {
+                padding: 2rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-section p {
+            color: var(--gray-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .footer-social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(15, 130, 140, 0.3);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            color: var(--gray-light);
+        }
+
+        .footer-contact i {
+            color: var(--accent);
+            width: 20px;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--gray-light);
+        }
+
+        .footer-bottom p {
+            margin: 0;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="{{ url('/') }}" class="logo">
+                    <span class="logo-text">Shafin</span>
+                </a>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="{{ url('/') }}" class="nav-link">Home</a></li>
+                    <li><a href="{{ url('/about') }}" class="nav-link active">About</a></li>
+                    <li><a href="{{ url('/education') }}" class="nav-link">Education</a></li>
+                    <li><a href="{{ url('/skills') }}" class="nav-link">Skills</a></li>
+                    <li><a href="{{ url('/projects') }}" class="nav-link">Projects</a></li>
+                    <li><a href="{{ url('/achievements') }}" class="nav-link">Achievements</a></li>
+                    <li><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
+                </ul>
+                <a href="{{ asset('assets/documents/resume.pdf') }}" class="resume-btn" download="Tanjid_Shafin_Resume.pdf">
+                    <i class="fas fa-download"></i>
+                    Resume
+                </a>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header fade-in">
+                <h1 class="page-title">About Me</h1>
+                <p class="page-subtitle">Passionate developer with a keen interest in creating impactful digital solutions that drive innovation and enhance user experiences.</p>
+            </div>
+
+            <!-- About Content -->
+            <div class="about-content">
+                <div class="about-image slide-in-left">
+                    <img src="{{asset('assets/image/Formal_pic.png')}}" alt="Tanjid Ahammed Shafin">
+                </div>
+                <div class="about-text slide-in-right">
+                    <h3>Full-Stack Developer & Tech Enthusiast</h3>
+                    <p>
+                        Hello! I'm <span class="highlight">Tanjid Ahammed Shafin</span>, a dedicated Full-Stack Developer currently pursuing Computer Science with a passion for creating innovative web applications. My journey in technology started with curiosity and has evolved into a commitment to excellence in software development.
+                    </p>
+                    <p>
+                        I specialize in modern web technologies including <span class="highlight">React.js</span>, <span class="highlight">Laravel</span>, <span class="highlight">Node.js</span>, and database management. My approach combines technical expertise with creative problem-solving to deliver solutions that not only meet requirements but exceed expectations.
+                    </p>
+                    <p>
+                        When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or mentoring fellow developers. I believe in continuous learning and staying updated with the latest trends in technology.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-item fade-in delay-1">
+                    <span class="stat-number" data-target="25">0</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-item fade-in delay-2">
+                    <span class="stat-number" data-target="2">0</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item fade-in delay-3">
+                    <span class="stat-number" data-target="15">0</span>
+                    <span class="stat-label">Technologies</span>
+                </div>
+                <div class="stat-item fade-in delay-4">
+                    <span class="stat-number" data-target="100">0</span>
+                    <span class="stat-label">Client Satisfaction</span>
+                </div>
+            </div>
+
+            <!-- Core Values -->
+            <div class="values-section fade-in">
+                <div class="section-title">
+                    <h2>Core Values</h2>
+                    <p>The principles that guide my work and define my approach to development</p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>Always seeking creative solutions and embracing new technologies to solve complex problems and push the boundaries of what's possible.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Excellence</h3>
+                        <p>Committed to delivering high-quality work with attention to detail, ensuring every project meets the highest standards of craftsmanship.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Collaboration</h3>
+                        <p>Believing in the power of teamwork and open communication to achieve remarkable results and create meaningful impact together.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal Information -->
+            <div class="personal-info fade-in">
+                <div class="section-title">
+                    <h2>Personal Information</h2>
+                    <p>Get to know me better on a personal level</p>
+                </div>
+                <div class="info-grid">
                     <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Dhaka, Bangladesh</span>
+                        <div class="info-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Full Name</h4>
+                            <span>Tanjid Ahammed Shafin</span>
+                        </div>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-birthday-cake"></i>
-                        <span>22 Years Old</span>
+                        <div class="info-icon">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Date of Birth</h4>
+                            <span>January 15, 2000</span>
+                        </div>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-briefcase"></i>
-                        <span>Web Developer</span>
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Email</h4>
+                            <span>tanjid.shafin@email.com</span>
+                        </div>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>Student</span>
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Phone</h4>
+                            <span>+880 1234-567890</span>
+                        </div>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-language"></i>
-                        <span>Bengali, English</span>
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Location</h4>
+                            <span>Dhaka, Bangladesh</span>
+                        </div>
                     </div>
-
-                    <a href="#" class="btn btn-primary download-cv">
-                        <i class="fas fa-download"></i> Download CV
-                    </a>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Languages</h4>
+                            <span>Bengali, English, Hindi</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="about-text animate-on-scroll">
-                <h2>Hello, I'm Tanjid Ahammed Shafin</h2>
-                <p>
-                    I'm a passionate web developer currently pursuing my studies while building my skills in full-stack development. My journey in technology began with curiosity about how websites work, and it has evolved into a deep passion for creating meaningful digital experiences.
-                </p>
-                <p>
-                    As an amateur developer, I'm constantly learning and experimenting with new technologies. I believe in the power of continuous learning and staying updated with the latest trends in web development. Every project I work on is an opportunity to grow and improve my skills.
-                </p>
-                <p>
-                    What drives me is the ability to turn ideas into reality through code. I love the problem-solving aspect of programming and the satisfaction that comes from building something that works beautifully and efficiently. My goal is to create web applications that not only function well but also provide an exceptional user experience.
-                </p>
-                <p>
-                    When I'm not coding, you'll find me exploring new technologies, reading about web development trends, or working on personal projects that challenge me to think creatively and push my boundaries.
-                </p>
+            <!-- CTA Section -->
+            <div class="cta-section fade-in">
+                <h3>Let's Work Together</h3>
+                <p>Ready to bring your ideas to life? I'm always excited to take on new challenges and create something amazing.</p>
+                <a href="{{ url('/contact') }}" class="btn btn-white">
+                    <i class="fas fa-rocket"></i> Start a Project
+                </a>
             </div>
         </div>
-    </div>
-</section>
+    </main>
 
-<!-- Interests Section -->
-<section class="interests-section">
-    <div class="container">
-        <div class="section-title animate-on-scroll">
-            <h2>My Interests & Passions</h2>
-            <p>Beyond coding, these are the things that inspire and motivate me every day.</p>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 20);
+        }
+
+        // Animate counters when they come into view
+        const counterElements = document.querySelectorAll('.stat-number');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-target'));
+                    animateCounter(entry.target, target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counterElements.forEach(el => {
+            counterObserver.observe(el);
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">Shafin</div>
+                    <p>Full Stack Developer passionate about creating innovative web solutions and bringing ideas to life through clean, efficient code.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/shaf1501" class="footer-social-link" title="GitHub" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/tanjid-shafin" class="footer-social-link" title="LinkedIn" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com/tanjid_shafin" class="footer-social-link" title="Twitter" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com/tanjid_shafin" class="footer-social-link" title="Instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/tanjid.shafin" class="footer-social-link" title="Facebook" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="{{ url('/about') }}"><i class="fas fa-user"></i> About Me</a></li>
+                        <li><a href="{{ url('/skills') }}"><i class="fas fa-code"></i> Skills</a></li>
+                        <li><a href="{{ url('/projects') }}"><i class="fas fa-laptop-code"></i> Projects</a></li>
+                        <li><a href="{{ url('/achievements') }}"><i class="fas fa-trophy"></i> Achievements</a></li>
+                        <li><a href="{{ url('/contact') }}"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Get In Touch</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> tanjidshafin@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> +880 1234 567890</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
+                        <p><i class="fas fa-globe"></i> Available for freelance work</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tanjid Ahammed Shafin. All rights reserved.</p>
+            </div>
         </div>
-
-        <div class="interests-grid">
-            <div class="interest-card animate-on-scroll">
-                <div class="interest-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <h3>Web Development</h3>
-                <p>Creating responsive, user-friendly websites and applications using modern frameworks and technologies. I love turning ideas into reality through clean, efficient code.</p>
-            </div>
-
-            <div class="interest-card animate-on-scroll">
-                <div class="interest-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3>Responsive Design</h3>
-                <p>Crafting designs that work seamlessly across all devices. I believe in mobile-first approach and creating interfaces that adapt beautifully to any screen size.</p>
-            </div>
-
-            <div class="interest-card animate-on-scroll">
-                <div class="interest-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3>Learning & Growth</h3>
-                <p>Continuously expanding my knowledge through online courses, tutorials, and hands-on projects. I'm always eager to learn new technologies and improve my skills.</p>
-            </div>
-
-            <div class="interest-card animate-on-scroll">
-                <div class="interest-icon">
-                    <i class="fas fa-book-open"></i>
-                </div>
-                <h3>Problem Solving</h3>
-                <p>I enjoy tackling complex challenges and finding creative solutions. Every bug is a puzzle to solve, and every project is an opportunity to think outside the box.</p>
-            </div>
-
-            <div class="interest-card animate-on-scroll">
-                <div class="interest-icon">
-                    <i class="fas fa-paint-brush"></i>
-                </div>
-                <h3>UI/UX Design</h3>
-                <p>Understanding user behavior and creating intuitive interfaces. I believe good design is not just about looks, but about creating meaningful user experiences.</p>
-            </div>
-
-            <div class="interest-card animate-on-scroll">
-                <div class="interest-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <h3>Innovation</h3>
-                <p>Staying updated with the latest technologies and trends. I'm always excited about new tools and frameworks that can help me build better applications.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Values Section -->
-<section class="values-section">
-    <div class="container">
-        <div class="section-title animate-on-scroll">
-            <h2>My Core Values</h2>
-            <p>These principles guide every decision I make in my development journey.</p>
-        </div>
-
-        <div class="values-grid">
-            <div class="value-item animate-on-scroll">
-                <div class="value-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <h4>Quality</h4>
-                <p>Striving for excellence in every line of code I write, focusing on clean, maintainable, and efficient solutions.</p>
-            </div>
-
-            <div class="value-item animate-on-scroll">
-                <div class="value-icon">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <h4>Passion</h4>
-                <p>Bringing enthusiasm and dedication to every project, treating each challenge as an opportunity to grow.</p>
-            </div>
-
-            <div class="value-item animate-on-scroll">
-                <div class="value-icon">
-                    <i class="fas fa-lightbulb"></i>
-                </div>
-                <h4>Creativity</h4>
-                <p>Thinking outside the box to find innovative solutions and create unique user experiences.</p>
-            </div>
-
-            <div class="value-item animate-on-scroll">
-                <div class="value-icon">
-                    <i class="fas fa-handshake"></i>
-                </div>
-                <h4>Collaboration</h4>
-                <p>Working well with others, sharing knowledge, and learning from the development community.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Quote Section -->
-<section class="quote-section">
-    <div class="container">
-        <div class="quote-content animate-on-scroll">
-            <div class="quote-text">
-                The best way to predict the future is to create it.
-            </div>
-            <div class="quote-author">
-                - Peter Drucker
-            </div>
-        </div>
-    </div>
-</section>
-@endsection
+    </footer>
+</body>
+</html>
