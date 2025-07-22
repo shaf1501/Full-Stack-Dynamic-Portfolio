@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::post('/login', [AuthenticationController::class, 'login'])->name('login.post');
+
+
 
 Route::get('/about', function () {
     return view('about_me');
@@ -40,3 +50,7 @@ Route::get('/achievements', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
