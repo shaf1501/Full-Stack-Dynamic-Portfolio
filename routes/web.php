@@ -14,17 +14,29 @@ use App\Http\Controllers\AuthenticationController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
-
+// login routes
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
 Route::post('/login', [AuthenticationController::class, 'login'])->name('login.post');
 
+// registration routes
+Route::get('/registration', function () {
+    return view('auth.registration');
+})->name('registration');
+
+Route::post('/registration', [AuthenticationController::class, 'registration'])->name('registration.post');
+
+//dashboard route
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/dashboard', [Controller::class, 'dashboard'])->name('admin.dashboard');
+});
+
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 
 
 Route::get('/about', function () {
