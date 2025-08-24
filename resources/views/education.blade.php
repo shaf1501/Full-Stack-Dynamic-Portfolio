@@ -698,10 +698,10 @@
                 <div class="education-item slide-in-left">
                     <div class="education-card">
                         <img src="{{asset('assets/image/university-logo.png')}}" alt="University" class="education-image">
-                        <div class="education-year">2020 - Present</div>
+                        <div class="education-year">2021 - Present</div>
                         <h3 class="education-title">Bachelor of Science in Computer Science</h3>
                         <div class="education-institution">Daffodil International University</div>
-                        <div class="education-grade">CGPA: 3.85 / 4.00</div>
+                        <div class="education-grade">CGPA: 3.60 / 4.00</div>
                         <p class="education-description">
                             Currently pursuing my degree with a focus on software development, algorithms, data structures, 
                             and modern web technologies. Maintaining excellent academic performance while actively 
@@ -718,9 +718,9 @@
                 <div class="education-item slide-in-right">
                     <div class="education-card">
                         <img src="{{asset('assets/image/college-logo.png')}}" alt="College" class="education-image">
-                        <div class="education-year">2017 - 2019</div>
+                        <div class="education-year">2018 - 2020</div>
                         <h3 class="education-title">Higher Secondary Certificate (HSC)</h3>
-                        <div class="education-institution">Daud Public School & College</div>
+                        <div class="education-institution">Safiuddin Sarker Academy and College</div>
                         <div class="education-grade">GPA: 5.00 / 5.00</div>
                         <p class="education-description">
                             Completed with excellent grades focusing on Science and Mathematics. Developed strong 
@@ -738,17 +738,17 @@
                 <div class="education-item slide-in-left">
                     <div class="education-card">
                         <img src="{{asset('assets/image/school-logo.png')}}" alt="School" class="education-image">
-                        <div class="education-year">2015 - 2017</div>
+                        <div class="education-year">2016 - 2018</div>
                         <h3 class="education-title">Secondary School Certificate (SSC)</h3>
-                        <div class="education-institution">Genius Laboratory School and College</div>
-                        <div class="education-grade">GPA: 5.00 / 5.00</div>
+                        <div class="education-institution">I.E.T Govt. High School, Narayanganj</div>
+                        <div class="education-grade">GPA: 4.78 / 5.00</div>
                         <p class="education-description">
                             Graduated with distinction, demonstrating consistent academic excellence and developing 
                             a strong foundation in mathematics and logical reasoning. First exposure to computer 
                             science which sparked my interest in programming.
                         </p>
                         <div class="education-highlights">
-                            <span class="highlight-tag">Golden GPA</span>
+                            <span class="highlight-tag">Excellent GPA</span>
                             <span class="highlight-tag">Science Group</span>
                             <span class="highlight-tag">Computer Science</span>
                         </div>
@@ -760,7 +760,7 @@
             <div class="education-stats fade-in">
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <span class="stat-number">3.85</span>
+                        <span class="stat-number">3.60</span>
                         <span class="stat-label">Current CGPA</span>
                     </div>
                     <div class="stat-item">
@@ -865,8 +865,8 @@
                 <div class="footer-section">
                     <h3>Get In Touch</h3>
                     <div class="footer-contact">
-                        <p><i class="fas fa-envelope"></i> tanjidshafin@gmail.com</p>
-                        <p><i class="fas fa-phone"></i> +880 1234 567890</p>
+                        <p><i class="fas fa-envelope"></i> tstanjidahmedshafin@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> +880 1794-567749</p>
                         <p><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
                         <p><i class="fas fa-globe"></i> Available for freelance work</p>
                     </div>

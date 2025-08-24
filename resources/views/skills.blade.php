@@ -1114,8 +1114,8 @@
                 <div class="footer-section">
                     <h3>Get In Touch</h3>
                     <div class="footer-contact">
-                        <p><i class="fas fa-envelope"></i> tanjidshafin@gmail.com</p>
-                        <p><i class="fas fa-phone"></i> +880 1234 567890</p>
+                        <p><i class="fas fa-envelope"></i> tstanjidahmedshafin@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> +880 1794-567749</p>
                         <p><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
                         <p><i class="fas fa-globe"></i> Available for freelance work</p>
                     </div>
